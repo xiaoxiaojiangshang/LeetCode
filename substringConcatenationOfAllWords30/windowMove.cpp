@@ -86,7 +86,7 @@ struct node* hashTableGet(struct node **table,char *str) {
 }
 // hashTable campare
 bool hashTableCampare(struct node **table1,struct node **table2,char *s,int wordLen) {
-	char temp[wordLen+1];
+	char *temp=(char *)malloc(sizeof(char)*(wordLen+1));
 	memset(temp,0,wordLen+1);
 	for(int i=0; i<strlen(s); i=i+wordLen) {
 		memcpy(temp,&s[i],wordLen);
@@ -119,9 +119,9 @@ int* findSubstring(char* s, char** words, int wordsSize, int *returnSize) {
 	}
 	int wordLen = strlen(words[0]);
 	int i,j;
-	char temp[wordLen+1];//temp[wordLen]={0},³õÊ¼»¯²»¿¿Æ×
-	memset(temp,0,strlen(temp)+1);
-	char substr[wordLen*wordsSize+1];
+	char *temp=(char *)malloc(sizeof(char)*(wordLen+1));
+	memset(temp,0,wordLen+1);
+	char *substr = (char *)malloc(sizeof(char)*(wordLen*wordsSize+1));
 	struct node** table2= creatHashTable();
 	struct node *index;
 	int *result=(int*)malloc(sizeof(int)*1000);
@@ -149,6 +149,7 @@ int* findSubstring(char* s, char** words, int wordsSize, int *returnSize) {
 	hashTableDelete(table1);
 	hashTableDelete(table2);
 	return result;
+	//
 }
 int main() {
 	const char *fname="dataIn.txt";
