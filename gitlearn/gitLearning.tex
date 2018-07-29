@@ -1,0 +1,111 @@
+\documentclass{article}
+\usepackage{CTEX}
+\usepackage{graphicx}
+\usepackage{threeparttable}
+\usepackage{float}
+\usepackage{longtable}
+\usepackage{ listings} 
+\usepackage{wasysym}
+
+\title{git 简单知识}
+\author{姜贵平}
+\begin{document}
+ \maketitle
+ \section{电脑与远程连接}
+ \subsection{配置}
+   \begin{itemize}
+ 	\item  \$ git config --global user.name "xiaoxiaojiangshang"
+ 	\item  \$ git config --global user.email "xiaoxiaojiangshang@gmail.com"
+ 	 \end{itemize}
+
+ \subsection{生成秘钥}
+ 进入密钥目录查看是否已生成密钥
+   \begin{itemize}
+ 	\item cd ~/.ssh
+ 	\item ls
+ 	 \end{itemize}
+  \hspace{0.3in}若没有秘钥，则生成密钥，并将公钥导入github中：
+  \begin{itemize}
+ 	\item 生成密钥：\$ ssh-keygen -t rsa -C "xiaoxiaojiangshang@gmail.com"
+ \end{itemize}
+ 登录网站，点击设置：
+ \begin{figure}[H]
+ 	
+ 	\center
+ 	\includegraphics[height=3in,width=4in]{1.jpg}
+ 	\caption{点击设置}
+ 	\label{fig:1}
+ \end{figure}
+ 点击ssh，并选择new key
+  \begin{figure}[H]
+ 	\center
+ 	\includegraphics[height=3in,width=4in]{2.jpg}
+ 	\caption{点击ssh}
+ 	\label{fig:2}
+ \end{figure}
+ \begin{figure}[H]
+	\center
+	\includegraphics[height=3in,width=4in]{3.jpg}
+	\caption{将公钥信息添加}
+	\label{fig:3}
+\end{figure}
+ \section{与远程仓库关联}
+ \subsection{远程建立一个rep}
+ 点击new repository：
+  \begin{figure}[H]
+ 	\center
+ 	\includegraphics[height=3in,width=4in]{4.jpg}
+ 	\caption{建立新的仓库}
+ 	\label{fig:4}
+ \end{figure}
+ 在本地建立一个文件夹，然后建立连接：
+ \begin{itemize}
+ 	\item git init
+ 	\item git add .
+ 	\item git commit -m "first commit"
+ \end{itemize}
+连接：
+ \begin{itemize}
+	\item git remote add origin https://github.com/xiaoxiaojiangshang/test.git
+\end{itemize}
+ \begin{figure}[H]
+	\center
+	\includegraphics[height=3in,width=4in]{5.jpg}
+	\caption{远程连接}
+	\label{fig:5}
+\end{figure}
+ps：若连接失败，修改：
+ \begin{itemize}
+	\item vi  .git/config 将 url改成  https://github.com/xiaoxiaojiangshang/test.gi
+\end{itemize}
+\section{git 一些常见命令}
+ \begin{itemize}
+	\item git add 添加文件到暂存区
+	\item git commit -m "first commit" 提交更改，从暂存区到当前分支。
+	\item git push 正式提交到远程，谨慎操作。
+	\item git status 查看当前状态。
+	\item git reset --hard HEAD\^(或者commit的版本号)，回退，没有push之前。
+	\item  git diff HEAD -- file 查看修改
+	\item  git checkout -- file 回退
+	\item git clone
+\end{itemize}
+ \begin{figure}[H]
+	\center
+	\includegraphics[height=2in,width=5in]{6.jpg}
+	\caption{关系图}
+	\label{fig:6}
+\end{figure}
+\section{git 常见问题}
+\subsection{改用git协议减少密码}
+git remote set-url origin git@github.com:xiaoxiaojiangshang/LeetCode.git\\
+git remot e-v\\
+\subsection{解决git pull rebase 而导致本地文件删除}
+git relog 查看恢复\\
+git reset () 这中间有冲突删除\\
+git rebase --abort\\
+git pull\\
+把当前分支设为master\\
+git branch --set-upstream-to=origin/master master\\
+git push -f\\
+
+ \end{document}
