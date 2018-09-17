@@ -6,7 +6,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#define MAXN 10000
+#define MAXN 1024
 struct ListNode {
 	int val;
 	struct ListNode *next;

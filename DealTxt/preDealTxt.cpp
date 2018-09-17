@@ -59,16 +59,38 @@ int  DealTxt(const char *fname,int **dataArray) {
 	return row;
 }
 
-void disp(int **dataArray,int rows) {
+void disp(int **dataArray,int *numPerLine,int rows) {
 	int i,j;
 	for(i=0; i<rows; i++)  {
-		for(j=0; j<=dataArray[i][0]; j++) {
+		for(j=0; j<numPerLine[i]; j++) {
 			printf("%d ",dataArray[i][j]);
 		}
 		printf("\n");
 	}
 }
 
+void swap(int*a,int*b) {
+	int temp = *a;
+	*a = *b;
+	*b = temp;
+}
+
+int min(int a,int b){
+    return a<b?a:b;
+}
+
+int max(int a,int b) {
+    return a>b?a:b;
+}
+int * dividTwoParts(int **dataArray ,int row) {
+    int *numPerLine = (int *) malloc(sizeof(int)*MAXN);
+    memset(numPerLine,0,sizeof(int)*MAXN);
+    for(int i=0;i<row;i++){
+        numPerLine[i] = dataArray[i][0];
+        memcpy(dataArray[i],&dataArray[i][1],numPerLine[i]*sizeof(int));
+    }
+    return numPerLine;
+}
 //int main() {
 //	const char *fname="dataIn.txt";
 //	int **dataArray = (int **)malloc(sizeof(int*)*MAXN);
