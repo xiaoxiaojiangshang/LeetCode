@@ -1,8 +1,8 @@
 /*
-	update： 
+	update：
     Author: jgz
     Date: 2018/7/17 9:42:18
-    mallco内存分配比直接二维数组靠谱 
+    mallco内存分配比直接二维数组靠谱
 */
 
 #include<stdio.h>
@@ -75,22 +75,53 @@ void swap(int*a,int*b) {
 	*b = temp;
 }
 
-int min(int a,int b){
-    return a<b?a:b;
+int min(int a,int b) {
+	return a<b?a:b;
 }
 
 int max(int a,int b) {
-    return a>b?a:b;
+	return a>b?a:b;
 }
 int * dividTwoParts(int **dataArray ,int row) {
-    int *numPerLine = (int *) malloc(sizeof(int)*MAXN);
-    memset(numPerLine,0,sizeof(int)*MAXN);
-    for(int i=0;i<row;i++){
-        numPerLine[i] = dataArray[i][0];
-        memcpy(dataArray[i],&dataArray[i][1],numPerLine[i]*sizeof(int));
-    }
-    return numPerLine;
+	int *numPerLine = (int *) malloc(sizeof(int)*MAXN);
+	memset(numPerLine,0,sizeof(int)*MAXN);
+	for(int i=0; i<row; i++) {
+		numPerLine[i] = dataArray[i][0];
+		memcpy(dataArray[i],&dataArray[i][1],numPerLine[i]*sizeof(int));
+	}
+	return numPerLine;
 }
+
+int dealTxtChar(const char *fname,char **dataArray) {
+	FILE *fp;
+	char s[MAXN];
+	if((fp=fopen(fname,"r"))==NULL) {
+		printf("打开文件%s错误\n",fname);
+		return NULL;
+	}
+	int row=0,order=0;
+	while(fgets(s,MAXN,fp)!=NULL) {
+		int start=0,oddEvenFlag=1;
+		for(int i=0; i<strlen(s); i++) {
+			if(s[i]=='"'&&oddEvenFlag%2==1) {
+				start =i;
+				oddEvenFlag++;
+				continue;
+			}
+			if(s[i]=='"'&&oddEvenFlag%2==0) {
+				dataArray[order] = (char*)malloc(sizeof(char)*50); // 单词不超过50
+				memset(dataArray[order],0,sizeof(char)*50);
+				memcpy(dataArray[order],&s[start+1],i-start-1);
+				order ++;
+				oddEvenFlag++;
+			}
+		}
+	}
+	return order;
+}
+
+
+
 //int main() {
 //	const char *fname="dataIn.txt";
 //	int **dataArray = (int **)malloc(sizeof(int*)*MAXN);
