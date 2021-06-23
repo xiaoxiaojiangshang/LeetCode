@@ -67,7 +67,7 @@ class Solution3(object):  # use stack
         return result
 
 
-if __name__ == '__main__':
+C
     input_data = [1, 2, 3, 4]
     list_node = []
     for data in input_data:
