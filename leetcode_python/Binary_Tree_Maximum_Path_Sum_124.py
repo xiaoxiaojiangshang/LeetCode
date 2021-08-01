@@ -11,20 +11,19 @@ class TreeNode(object):
         self.left = None
         self.right = None
 class Solution:
-    ### 利用self 当做全局变量
-    max_value = -100000
     def maxPathDown(self,root):
         if not root:
             return 0
-        left = max(0,self.maxPathDown(root.left))
+        left = max(0, self.maxPathDown(root.left))
         right = max(0, self.maxPathDown(root.right))
-        self.max_value = max(self.max_value,root.val+left+right)
-        return root.val+max(left,right)
+        self.max_value = max(self.max_value, root.val+left+right)
+        return root.val+max(left, right)
 
     def maxPathSum(self, root):
+        ### 利用self 当做全局变量
+        self.max_value = -100000
         self.maxPathDown(root)
         return self.max_value
-
 
 
 if __name__ == '__main__':
