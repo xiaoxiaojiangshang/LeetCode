@@ -39,5 +39,6 @@ def generate_topic(string):
     string_list = string.replace('.','').split(' ')
     string_list = string_list[1:] + [string_list[0]]
     return '_'.join(string_list)
-string = "233. Number of Digit One"
-print(generate_topic(string))
+if __name__ == "__main__":
+    string = "312. Burst Balloons"
+    print(generate_topic(string))
