@@ -40,5 +40,5 @@ def generate_topic(string):
     string_list = string_list[1:] + [string_list[0]]
     return '_'.join(string_list)
 if __name__ == "__main__":
-    string = "312. Burst Balloons"
+    string = "689. Maximum Sum of 3 Non-Overlapping Subarrays"
     print(generate_topic(string))
