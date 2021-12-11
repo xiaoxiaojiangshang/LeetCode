@@ -32,15 +32,20 @@ class Solution:
         ans = ans % big_num
         return ans
 
-    # 双向栈有点慢
+    # 双向栈有点繁琐
     def sumSubarrayMins(self, arr: List[int]) -> int:
         n = len(arr)
         if n == 0:
             return 0
         big_num = int(1e9 + 7)
-        left, right = [0]*n,[0]*n
         order_stack = []
+        ans = 0
         for i,value in enumerate(arr):
+
+
+
+
+
 
 
 
