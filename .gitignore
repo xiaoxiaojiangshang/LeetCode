@@ -3,4 +3,4 @@
 */__pycache__
 .idea/
 *.pyc
-./common/*
+common/common_algorithm.py
