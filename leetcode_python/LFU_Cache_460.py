@@ -83,7 +83,7 @@ class LFUCache:
                 node = nodeList.tail.prev
                 nodeList.remove(node)
                 del self.dict[node.key]
-            newNode = DoubleLinkNode(key,value)
+            newNode = DoubleLinkNode(key, value)
             newNode.freq = 1
             self.minFreq = 1
             if self.minFreq not in self.freq2nodeList:
